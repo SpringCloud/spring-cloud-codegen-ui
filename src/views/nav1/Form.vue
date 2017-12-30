@@ -4,7 +4,7 @@
         <div class="col-sm-8 col-sm-offset-2">
           <div class="ibox float-e-margins">
             <div class="ibox-content">
-              <form method="POST" class="form-horizontal" action="/v1/downloadResponse" enctype="text/plain">
+              <form method="POST" class="form-horizontal" action="/api/v1/downloadResponse" enctype="text/plain">
                 <div class="module-item" v-for="(module,number) in modules" :key="number">
                   <transition name="fade" v-if="module.type == 'MIX_GROUP'" v-for="(item,index) in module.entityList">
                     <div class="form-group">
@@ -248,7 +248,7 @@
         var vue = this;
         return $.ajax({
           type: 'GET',
-          url: '/v1/' + url,
+          url: '/api/v1/' + url,
           dataType: 'json',
           success: function (data) {
             vue.builtModules(data);
