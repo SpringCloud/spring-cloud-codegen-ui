@@ -4,15 +4,21 @@
         <div class="col-sm-8 col-sm-offset-2">
           <div class="ibox float-e-margins">
             <div class="ibox-content">
-              <form method="POST" class="form-horizontal" action="/api/v1/downloadResponse" enctype="text/plain">
+              <form method="POST" id="genform" class="form-horizontal" action="/api/v2/downloadResponse" enctype="text/plain">
                 <div class="module-item" v-for="(module,number) in modules" :key="number">
+                  <transition name="fade">
+                    <!--TODO 此处样式需要修改一下-->
+                    <!--class="hr-line-dashed"-->
+                    <div v-if="hrShow[module.key]">{{ module.label }}</div>
+                  </transition>
+
                   <transition name="fade" v-if="module.type == 'MIX_GROUP'" v-for="(item,index) in module.entityList">
                     <div class="form-group">
                       <label v-if="item.type != 'RADIO' && item.type != 'CHECKBOX'" class="col-sm-2 control-label">{{ item.label }}</label>
                       <div class="col-sm-8" v-if="item.type != 'RADIO' && item.type != 'CHECKBOX'">
                         <input v-if="item.type == 'TEXTFIELD'" class="form-control" :name="item.key" :value="item.value" required>
                         <span v-if="item.highlightable && item.type == 'TEXTFIELD'" class="must-need">*</span>
-                        <span v-if="item.note != null && item.type == 'TEXTFIELD'" class="info-tip">
+                        <span v-if="item.note != '' && item.note != null && item.type == 'TEXTFIELD'" class="info-tip">
                           <el-tooltip class="item" effect="dark" placement="right">
                             <div slot="content" class="content-box">{{ item.note }}</div>
                             <el-button class="el-icon-question"></el-button>
@@ -21,6 +27,13 @@
                         <el-select v-if="item.type == 'COMBOBOX'" v-model="modules[number].entityList[index].value" :name="item.key" :select2Style="select2Style" :placeholder="item.label">
                           <el-option v-if="item.type == 'COMBOBOX'" v-for="option in item.options" :key="number" :label="option" :value="option"></el-option>
                         </el-select>
+                      </div>
+                      <div class="col-sm-10" v-if="item.type == 'CHECKBOX'">
+                        <label class="col-sm-2 control-label" style="margin-top: -7px;">{{ item.label }}</label>
+                        <div  :class="'col-sm-2'">
+                          <el-checkbox  :label="!item.value" :name="item.key" style="color:#666"></el-checkbox>
+                          <span v-if="!item.defaultable" class="recommend">（推荐）</span>
+                        </div>
                       </div>
                     </div>
                   </transition>
@@ -110,9 +123,7 @@
                       </div>
                     </div>
                   </transition>
-                  <transition name="fade">
-                    <div class="hr-line-dashed" v-if="hrShow[module.key]"></div>
-                  </transition>
+
 
                 </div>
                 <div class="form-group" style="text-align:center;">
@@ -248,7 +259,7 @@
         var vue = this;
         return $.ajax({
           type: 'GET',
-          url: '/api/v1/' + url,
+          url: '/api/v2/' + url,
           dataType: 'json',
           success: function (data) {
             vue.builtModules(data);
@@ -293,7 +304,8 @@
         return list;
       },
       refresh: function () {
-        window.location.reload();
+        document.getElementById("genform").reset();
+//        window.location.reload();
       }
 
     },
