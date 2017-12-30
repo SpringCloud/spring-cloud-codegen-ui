@@ -268,6 +268,7 @@
         });
       },
       builtModules: function (data) {
+        this.modules = [];
         var i = 0;
         for (i in data) {
           var tmp = {};
@@ -304,8 +305,9 @@
         return list;
       },
       refresh: function () {
-        document.getElementById("genform").reset();
+//        document.getElementById("genform").reset();
 //        window.location.reload();
+        this.getInitJq('getMetaData');
       }
 
     },
