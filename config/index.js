@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api/v2/': {
+      '/api/v1/': {
         target: 'http://codegen.smartscity.com/',
         changeOrigin: true,
         pathRewrite: {
-          '^/v2/': ''
+          '^/v1/': ''
         }
       }
     },
