@@ -2,7 +2,7 @@
 
 > ui source for codegen
 
-**demo**: [https://taylorchen709.github.io/vue-admin/](https://taylorchen709.github.io/vue-admin/)
+**demo**: [http://start.springcloud.cn](http://start.springcloud.cn)
 
 # To start
 
