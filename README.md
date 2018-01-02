@@ -18,6 +18,8 @@ npm install
 # by api: http://127.0.0.1:3333
 npm run dev
 ```
+配置Hosts:
+127.0.0.1 localhost
 
 ### serve with hot reload at localhost:8888   
 ```shell
