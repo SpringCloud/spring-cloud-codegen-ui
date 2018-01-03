@@ -6,11 +6,6 @@
             <div class="ibox-content">
               <form method="POST" id="genform" class="form-horizontal" action="/api/v1/downloadResponse" enctype="text/plain">
                 <div class="module-item" v-for="(module,number) in modules" :key="number">
-                  <transition name="fade">
-                    <!--TODO 此处样式需要修改一下-->
-                    <!--class="hr-line-dashed"-->
-                    <div v-if="hrShow[module.key]">{{ module.label }}</div>
-                  </transition>
 
                   <transition name="fade" v-if="module.type == 'MIX_GROUP'" v-for="(item,index) in module.entityList">
                     <div class="form-group">
