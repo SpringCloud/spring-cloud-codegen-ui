@@ -75,12 +75,22 @@
                       </div>
                     </div>
                   </transition>
-                  <transition name="fade" v-else-if="module.type == 'RADIO_GROUP' && index == 1 && module.key != 'sc-alone' && module.key != 'sc-alone-radio' ">
+                  <transition name="fade" v-else-if="module.type == 'RADIO_GROUP' && index == 1 && module.key == 'applicationType'">
                     <div class="form-group" >
                       <label class="col-sm-2 control-label" v-if="index == 1">{{ module.label }}</label>
                       <div class="col-sm-10">
                         <div v-for="(radio,rnum) in module.entityList" class="col-sm-2" v-if="index == 1">
                           <el-radio  :label="radio.key" v-model="applicationType" :name="module.key">{{ radio.label }}</el-radio>
+                        </div>
+                      </div>
+                    </div>
+                  </transition>
+                  <transition name="fade" v-else-if="module.type == 'RADIO_GROUP' && index == 1 && module.key != 'sc-alone' && module.key != 'sc-alone-radio' ">
+                    <div class="form-group" >
+                      <label class="col-sm-2 control-label" v-if="index == 1">{{ module.label }}</label>
+                      <div class="col-sm-10">
+                        <div v-for="(radio,rnum) in module.entityList" class="col-sm-2" v-if="index == 1">
+                          <el-radio  :label="radio.key" v-model="item.value" :name="module.key">{{ radio.label }}</el-radio>
                         </div>
                       </div>
                     </div>
