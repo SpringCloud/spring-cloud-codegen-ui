@@ -6,11 +6,6 @@
             <div class="ibox-content">
               <form method="POST" id="genform" class="form-horizontal" action="/api/v1/downloadResponse" enctype="text/plain">
                 <div class="module-item" v-for="(module,number) in modules" :key="number">
-                  <transition name="fade">
-                    <!--TODO 此处样式需要修改一下-->
-                    <!--class="hr-line-dashed"-->
-                    <div v-if="hrShow[module.key]">{{ module.label }}</div>
-                  </transition>
 
                   <transition name="fade" v-if="module.type == 'MIX_GROUP'" v-for="(item,index) in module.entityList">
                     <div class="form-group">
@@ -80,12 +75,22 @@
                       </div>
                     </div>
                   </transition>
-                  <transition name="fade" v-else-if="module.type == 'RADIO_GROUP' && index == 1 && module.key != 'sc-alone' && module.key != 'sc-alone-radio' ">
+                  <transition name="fade" v-else-if="module.type == 'RADIO_GROUP' && index == 1 && module.key == 'applicationType'">
                     <div class="form-group" >
                       <label class="col-sm-2 control-label" v-if="index == 1">{{ module.label }}</label>
                       <div class="col-sm-10">
                         <div v-for="(radio,rnum) in module.entityList" class="col-sm-2" v-if="index == 1">
                           <el-radio  :label="radio.key" v-model="applicationType" :name="module.key">{{ radio.label }}</el-radio>
+                        </div>
+                      </div>
+                    </div>
+                  </transition>
+                  <transition name="fade" v-else-if="module.type == 'RADIO_GROUP' && index == 1 && module.key != 'sc-alone' && module.key != 'sc-alone-radio' ">
+                    <div class="form-group" >
+                      <label class="col-sm-2 control-label" v-if="index == 1">{{ module.label }}</label>
+                      <div class="col-sm-10">
+                        <div v-for="(radio,rnum) in module.entityList" class="col-sm-2" v-if="index == 1">
+                          <el-radio  :label="radio.key" v-model="item.value" :name="module.key">{{ radio.label }}</el-radio>
                         </div>
                       </div>
                     </div>
