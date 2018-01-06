@@ -389,4 +389,29 @@
     list-style: none;
   }
 
+
+  /*对eleui样式的修改*/
+
+  .el-select-dropdown__item.selected {
+    background-color: #6db33f;
+  }
+
+  .el-select .el-input__inner:focus {
+    border-color: #6db33f !important;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #6db33f;
+    box-shadow: 0 0 5px rgba(207, 220, 0, 0.4);
+    border-radius: 5px;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: #6db33f;
+    box-shadow: 0 0 5px rgba(207, 220, 0, 0.4);
+    border-radius: 5px;
+  }
+
 </style>
